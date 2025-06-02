@@ -33,8 +33,9 @@ Este projeto foi desenvolvido para a disciplina de Projeto de Algoritmos, da Uni
 **Linguagem**: Python, Javascript,HTML, CSS <br>
 **Pré-Requisitos**: Ter Python instalado na máquina <br>
 **Passo a Passo:**: Rodar no terminal:<br>
-**1** - python app.py (Para Linux: python3 app.py)<br>
-**2** - Rodar o Live Server do VSCode ou abrir o arquivo index.html no navegador<br>
+**1** - Instalar dependências: pip install -r requirements.txt<br>
+**2** - python app.py (Para Linux: python3 app.py)<br>
+**3** - Rodar o Live Server do VSCode ou abrir o arquivo index.html no navegador<br>
 
 
 ## Uso 
@@ -42,7 +43,7 @@ Primeiramente o usuário deve inserir os dados dos pallets, incluindo o nome, pe
 
 ## Outros 
 Link do Repositório: https://github.com/projeto-de-algoritmos-2025/Greed_SmartPack<br>
-Link do Vídeo de Apresentação: <br>
+Link do Vídeo de Apresentação: https://youtu.be/Y9uQ8TbETa0<br>
 
 
 
