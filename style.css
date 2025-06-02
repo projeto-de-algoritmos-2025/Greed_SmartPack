@@ -1,0 +1,222 @@
+body {
+  font-family: 'Montserrat', sans-serif; /* Define Montserrat como padrão */
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centraliza verticalmente os elementos */
+  background: linear-gradient(90deg, #4caf50, #2196f3); /* Gradiente para a navbar */
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav div {
+  display: flex;
+  align-items: center; /* Centraliza os itens dentro de cada div */
+}
+
+.icon {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+nav div:first-child {
+  font-size: 1.8rem; /* Tamanho moderado */
+  font-family: 'Montserrat', sans-serif; /* Fonte estilizada */
+  color: #ffffff; /* Branco simples */
+  margin-left: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease, background-color 0.3s ease; /* Adiciona transição suave */
+}
+
+nav a:hover {
+  color:rgb(30, 255, 0); /* Troca para verde no hover */
+  background-color: rgba(255, 255, 255, 0.2); /* Adiciona um fundo transparente */
+  padding: 5px 10px; /* Adiciona espaçamento interno no hover */
+  border-radius: 5px; /* Bordas arredondadas no hover */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  max-width: 1600px;
+  margin: auto;
+}
+
+.form-section, .result-section {
+  width: 60%;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: #444;
+}
+
+h1 {
+  font-size: 3rem; /* Tamanho grande */
+  font-weight: 400; /* Peso mais fino possível */
+  font-family: 'Alegreya Sans SC', sans-serif; /* Fonte estilizada */
+  text-align: center; /* Centralizado */
+  margin-bottom: 20px;
+}
+
+h1 .smart {
+  color: #4caf50; /* Verde */
+}
+
+h1 .pack {
+  color: #2196f3; /* Azul */
+}
+
+label, input, button {
+  display: block;
+  margin-top: 10px;
+}
+
+input {
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Estilo para o container da página "Sobre" */
+.sobre-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: justify;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Estilo para o título principal */
+.sobre-container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  color: #4caf50;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilo para subtítulos */
+.sobre-container h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  color: #2196f3;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+/* Estilo para links */
+.sobre-container a {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sobre-container a:hover {
+  color: #2196f3;
+  text-decoration: underline;
+}
+
+/* Estilo para parágrafos */
+.sobre-container p {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Adiciona espaçamento entre os itens da navbar */
+nav div a {
+  margin-right: 20px;
+}
+
+/* Estilo para o campo de resposta */
+#resultado {
+  background: #e3f2fd; /* Fundo azul claro */
+  border: 2px solid #2196f3; /* Borda azul */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 20px;
+  margin-top: 20px;
+  color: #0d47a1; /* Texto azul escuro */
+  font-family: 'Montserrat', sans-serif; /* Fonte estilizada */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+#resultado p {
+  font-size: 1.2rem; /* Tamanho maior para o texto */
+  font-weight: bold; /* Negrito */
+  margin-bottom: 10px;
+}
+
+#resultado ul {
+  list-style-type: none; /* Remove marcadores da lista */
+  padding: 0;
+}
+
+#resultado li {
+  background: #bbdefb; /* Fundo azul mais claro */
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 4px; /* Bordas arredondadas */
+  font-size: 1rem;
+  color: #0d47a1; /* Texto azul escuro */
+}
