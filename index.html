@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartPack</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div>
+      <img src="truck.gif" alt="Ícone de Caminhão" class="icon">
+      SmartPack
+    </div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="sobre.html">Sobre</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="form-section">
+      <h1><span class="smart">Smart</span><span class="pack">Pack</span></h1>
+
+      <h2>Registrar Produto</h2>
+      <label for="nome">Nome do Produto:</label>
+      <input type="text" id="nome">
+
+      <label for="peso">Peso do Pallet (kg):</label>
+      <input type="number" id="peso">
+
+      <label for="valor">Valor do Pallet (R$):</label>
+      <input type="number" id="valor">
+
+      <button onclick="registrarProduto()">Registrar Produto</button>
+
+      <h2>Produtos Registrados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Peso (kg)</th>
+            <th>Valor (R$)</th>
+            <th>Preço por Quilo (R$/kg)</th> <!-- Nova coluna -->
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-produtos"></tbody>
+      </table>
+
+      <h2>Calcular Melhor Carga</h2>
+      <label for="peso-max">Peso Máximo (kg):</label>
+      <input type="number" id="peso-max" value="60">
+
+      <button onclick="calcular()">Calcular Carga</button>
+    </div>
+
+    <div class="result-section">
+      <h2>Resultado</h2>
+      <div id="resultado" class="resultado-container">
+        <p>O resultado será exibido aqui após o cálculo.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const produtos = [];
+
+    function registrarProduto() {
+      const nome = document.getElementById('nome').value;
+      const peso = parseFloat(document.getElementById('peso').value);
+      const valor = parseFloat(document.getElementById('valor').value);
+
+      if (nome && peso > 0 && valor > 0) {
+        produtos.push({ nome, peso, valor });
+        atualizarTabela();
+        document.getElementById('nome').value = '';
+        document.getElementById('peso').value = '';
+        document.getElementById('valor').value = '';
+      } else {
+        alert('Preencha todos os campos corretamente.');
+      }
+    }
+
+    function removerProduto(index) {
+      produtos.splice(index, 1);
+      atualizarTabela();
+    }
+
+    function atualizarTabela() {
+      const tabela = document.getElementById('tabela-produtos');
+      tabela.innerHTML = '';
+      produtos.forEach((produto, index) => {
+        const precoPorQuilo = (produto.valor / produto.peso).toFixed(2); 
+        tabela.innerHTML += `
+          <tr>
+            <td>${produto.nome}</td>
+            <td>${produto.peso}</td>
+            <td>${produto.valor}</td>
+            <td>${precoPorQuilo}</td> <!-- Exibe o preço por quilo -->
+            <td><button onclick="removerProduto(${index})">Remover</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    async function calcular() {
+      const pesoMax = parseFloat(document.getElementById('peso-max').value);
+
+      if (pesoMax > 0 && produtos.length > 0) {
+        const resposta = await fetch('http://localhost:5000/calcular', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ peso_max: pesoMax, itens: produtos })
+        });
+
+        const resultado = await resposta.json();
+
+        let html = `
+          <p><strong>Valor total:</strong> R$ ${resultado.valor_total}</p>
+          <p><strong>Peso usado:</strong> ${resultado.peso_usado} kg</p>
+          <ul>
+        `;
+        for (let item of resultado.carga) {
+          html += `
+            <li>
+              <strong>${item.nome}</strong> - ${item.proporcao}% (${item.valor} reais)
+            </li>
+          `;
+        }
+        html += `</ul>`;
+        document.getElementById('resultado').innerHTML = html;
+      } else {
+        alert('Adicione produtos e insira um peso máximo válido.');
+      }
+    }
+  </script>
+</body>
+</html>
